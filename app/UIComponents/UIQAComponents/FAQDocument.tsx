@@ -1,12 +1,34 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { generateDocumentPrompts, getSearchResults, getFiles } from "@/app/UILibraries/actions";
 
-const FAQDocument = () => {
-  const [fileName, setFileName] = useState("");
+interface FAQDocumentProps {
+  initialFileName?: string;
+  onGenerateFAQ?: (name: string) => void;
+}
+
+const FAQDocument = ({ initialFileName = "", onGenerateFAQ }: FAQDocumentProps) => {
+  const [fileName, setFileName] = useState(initialFileName);
+  const [hasAutoSearched, setHasAutoSearched] = useState(false);
+
+  // Always sync fileName with initialFileName from props unless user has typed
+  useEffect(() => {
+    setFileName(initialFileName);
+    setHasAutoSearched(false);
+  }, [initialFileName]);
+
+  // On mount, if initialFileName is present, call generate prompt once
+  useEffect(() => {
+    if (initialFileName) {
+      handleFetchFAQs();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Remove auto-generate FAQ on fileName change. Only generate on button click.
   const [fileSuggestions, setFileSuggestions] = useState<string[]>([]);
   const [suggestionLoading, setSuggestionLoading] = useState(false);
   // List all file names and show close matches to user input
@@ -85,8 +107,13 @@ const FAQDocument = () => {
             placeholder="Enter file name..."
             value={fileName}
             onChange={e => {
-              setFileName(e.target.value);
-              fetchFileSuggestions(e.target.value);
+              const newValue = e.target.value;
+              setFileName(newValue);
+              setHasAutoSearched(false);
+              // Only fire fetchFileSuggestions if user is typing (not from query string)
+              if (newValue !== initialFileName) {
+                fetchFileSuggestions(newValue);
+              }
             }}
             autoComplete="off"
           />
@@ -129,7 +156,10 @@ const FAQDocument = () => {
           <button
             className="text-white px-4 py-1 rounded"
             style={{ backgroundColor: '#e63946' }}
-            onClick={handleFetchFAQs}
+            onClick={() => {
+              if (onGenerateFAQ) onGenerateFAQ(fileName);
+              handleFetchFAQs();
+            }}
             disabled={loading || !fileName}
           >
             {loading ? "Loading..." : "Generate FAQ"}

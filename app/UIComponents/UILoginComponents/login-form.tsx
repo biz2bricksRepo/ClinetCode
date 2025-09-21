@@ -13,10 +13,16 @@ import { useRouter } from 'next/navigation';
 export default function LoginForm() {
   const router = useRouter();
 
-  function handleLogin(e: React.FormEvent) {
+  function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // Add authentication logic here if needed
-    router.push('/UIPages/mydocuments');
+    const form = e.currentTarget;
+    const email = (form.elements.namedItem('email') as HTMLInputElement)?.value;
+    const password = (form.elements.namedItem('password') as HTMLInputElement)?.value;
+    if (email === 'dummy@gmail.com' && password === 'bizbricks@2025') {
+      router.push('/UIPages/mydocuments');
+    } else {
+      alert('Invalid credentials');
+    }
   }
 
   return (

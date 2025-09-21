@@ -29,6 +29,16 @@ const links = [
     href: '/UIPages/mydocuments/ExcelSearch',
     icon: DocumentDuplicateIcon,
   },
+  {
+    name: 'Excel Agent',
+    href: '/UIPages/mydocuments/ExcelMapper',
+    icon: DocumentDuplicateIcon,
+  },
+  {
+    name: 'File Explorer',
+    href: '/UIPages/mydocuments/FolderExplorer',
+    icon: HomeIcon,
+  },
 ];
 
 export default function NavLinks() {

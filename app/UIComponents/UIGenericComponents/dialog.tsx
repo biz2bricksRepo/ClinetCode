@@ -21,7 +21,7 @@ export const DialogMessage = ({
   return (
    <>
     { showDialog && (
-       <Dialog modalType="non-modal" open={open} onOpenChange={(_, data) => setOpen(data.open)}>
+       <Dialog modalType="non-modal" open={open} onOpenChange={(_event: unknown, data: { open: boolean }) => setOpen(data.open)}>
         <DialogSurface>
         <DialogBody>
           <DialogTitle>Message</DialogTitle>

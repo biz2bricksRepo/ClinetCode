@@ -27,8 +27,9 @@ export async function uploadFile(formData: FormData) {
         if (!response.ok) {
             throw new Error("Upload failed: " + response.statusText);
         }
-        console.log(response.json());
-        return await response.json();
+        const result = await response.json();
+        console.log(result);
+        return result;
     } catch (error) {
         console.error("Error uploading file", error);
         throw error;
@@ -53,9 +54,9 @@ export async function getFiles(directory:string):Promise<any>{
             return { props: { fileData: [] } };
         }
         // Map the file names to the expected format     
-        let fileData = data.files.map((d) => {
+        let fileData = data.files.map((d: string) => {
             return {
-                name:d
+                name: d
             }
         });
        //return Promise.resolve(fileData);

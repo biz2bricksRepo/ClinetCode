@@ -28,7 +28,7 @@ import  ProcessingDialog  from "@/app/UIComponents/UIGenericComponents/processin
 export default function UploadedDocumentsTable({
   documents,
 }: {
-  documents: documents[];
+  documents: document[];
 }) {
     //const allDocuments = use(documents);
     const columns = [
