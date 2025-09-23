@@ -1,6 +1,7 @@
 
 import { lusitana } from "@/app/UIComponents/fonts";
 import LoginForm from "@/app/UIComponents/UILoginComponents/login-form";
+import GoogleLogin from "@/app/UIComponents/UILoginComponents/google-login";
 
 export default function Page() {
   return (
@@ -19,7 +20,9 @@ export default function Page() {
       </div>
       {/* Right column: login form */}
       <div className="md:w-1/2 w-full flex flex-col justify-center items-center bg-white rounded-lg p-8 shadow">
-        <LoginForm />
+        {/* <LoginForm /> */}
+        <h1>Login with Google</h1>
+        <GoogleLogin />
       </div>
     </div>
   );

@@ -5,9 +5,10 @@ import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import LoginForm from '@/app/UIComponents/UILoginComponents/login-form';
+//import LoginForm from '@/app/UIComponents/UILoginComponents/login-form';
 import { useState } from 'react';
-import RegisterModal from '@/app/UIComponents/UILoginComponents/register-modal';
+//import RegisterModal from '@/app/UIComponents/UILoginComponents/register-modal';
+import GoogleLogin from '@/app/UIComponents/UILoginComponents/google-login';
 
 export default function Page() {
   const [showRegister, setShowRegister] = useState(false);
@@ -22,15 +23,17 @@ export default function Page() {
           <p className={`text-xl text-gray-800 md:text-3xl md:leading-normal`}>
             <strong>Welcome to Biz2Bricks.</strong>
           </p>
-          <LoginForm />
-          <div className="mt-2 text-center">
+          {/* <LoginForm /> */}
+           <br />
+            <GoogleLogin />
+          {/* <div className="mt-2 text-center">
             <button type="button" onClick={() => setShowRegister(true)} className="text-blue-600 hover:underline text-sm bg-transparent border-none cursor-pointer">
               New user? Register here
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
-      <RegisterModal open={showRegister} onClose={() => setShowRegister(false)} />
+      {/* <RegisterModal open={showRegister} onClose={() => setShowRegister(false)} /> */}
     </main>
   );
 }
