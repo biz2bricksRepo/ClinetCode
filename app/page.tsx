@@ -8,7 +8,9 @@ import Image from 'next/image';
 //import LoginForm from '@/app/UIComponents/UILoginComponents/login-form';
 import { useState } from 'react';
 //import RegisterModal from '@/app/UIComponents/UILoginComponents/register-modal';
-import GoogleLogin from '@/app/UIComponents/UILoginComponents/google-login';
+//import GoogleLogin from '@/app/UIComponents/UILoginComponents/google-login';
+
+import SignIn from '@/app/UIComponents/UILoginComponents/sign-in';
 
 export default function Page() {
   const [showRegister, setShowRegister] = useState(false);
@@ -25,7 +27,8 @@ export default function Page() {
           </p>
           {/* <LoginForm /> */}
            <br />
-            <GoogleLogin />
+            {/* <GoogleLogin /> */}
+            <SignIn />
           {/* <div className="mt-2 text-center">
             <button type="button" onClick={() => setShowRegister(true)} className="text-blue-600 hover:underline text-sm bg-transparent border-none cursor-pointer">
               New user? Register here

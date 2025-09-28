@@ -2,6 +2,8 @@
 
 import { error } from "console";
 import { document } from "./definitions";
+import { signIn } from "@/auth";
+import { getPossibleInstrumentationHookFilenames } from "next/dist/build/utils";
 
 //const BASE_API_URI = "http://127.0.0.1:8004"
 const BASE_API_URI = "https://document-processing-service-38231329931.us-central1.run.app";
@@ -214,6 +216,17 @@ export async function getSearchResults(query: string, source_document?: string):
     } catch (error) {
         console.log(error);
     }
+}
+/// Handle user sign-in
+// This function initiates the sign-in process using the signIn method from the auth module 
+export async function handleSignIn() {
+    // Implement sign-in logic here
+    console.log("Sign-in logic to be implemented");
+   //const res =  await signIn("google", { callbackUrl: "/UIPages/mydocuments" });
+   await signIn("google", { redirect: true, redirectTo: "/UIPages/mydocuments" });
+   //await signIn(undefined,{ redirect: true, redirectTo: "/UIPages/mydocuments" });
+   //console.log("Sign-in response:", res);
+    //return res;
 }
 
 

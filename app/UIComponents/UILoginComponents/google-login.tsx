@@ -1,7 +1,7 @@
 'use client';
 import { useEffect } from "react";
 
-import  handler from "@/pages/api/googleauth";
+import  handler from "@/app/api/googleauth";
 import { useRouter } from 'next/navigation';
 
 export default function GoogleLogin() {
