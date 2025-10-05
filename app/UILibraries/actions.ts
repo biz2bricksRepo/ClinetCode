@@ -219,11 +219,22 @@ export async function getSearchResults(query: string, source_document?: string):
 }
 /// Handle user sign-in
 // This function initiates the sign-in process using the signIn method from the auth module 
-export async function handleSignIn() {
+export async function handleSignIn(provider: string = "google") {
     // Implement sign-in logic here
     console.log("Sign-in logic to be implemented");
    //const res =  await signIn("google", { callbackUrl: "/UIPages/mydocuments" });
-   await signIn("google", { redirect: true, redirectTo: "/UIPages/mydocuments" });
+   switch(provider) {
+    case "google":
+        await signIn("google", { redirect: true, redirectTo: "/UIPages/mydocuments" });
+        break;
+    case "github":
+        await signIn("github", { redirect: true, redirectTo: "/UIPages/mydocuments" });
+        break;
+    default:
+        console.error("Unsupported provider:", provider);
+        throw new Error("Unsupported provider");
+   }
+   //await signIn("google", { redirect: true, redirectTo: "/UIPages/mydocuments" });
    //await signIn(undefined,{ redirect: true, redirectTo: "/UIPages/mydocuments" });
    //console.log("Sign-in response:", res);
     //return res;

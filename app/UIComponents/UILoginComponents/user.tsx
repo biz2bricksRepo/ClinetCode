@@ -7,7 +7,8 @@ export default  async function User(){
     const  session = await auth();
     console.log("Session in User Component:", session);
     if(!session || !session.user){
-        return <p>User not signed in</p>;
+        
+        return <div>Loading...</div>;
     }
     return(
         <div>

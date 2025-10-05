@@ -98,3 +98,7 @@ Let me know if you want step-by-step help for any of these steps!Replace YOUR_PR
 
 Let me know if you want step-by-step help for any of these steps!
 
+
+## Running application locally
+
+` flutter run -d chrome --web-port 3001 `
