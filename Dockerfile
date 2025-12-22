@@ -9,7 +9,7 @@ WORKDIR /app
 RUN npm install -g pnpm
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN pnpm build
+RUN pnpm build 2>&1
 
 
 FROM node:20-alpine AS runner
